@@ -1,16 +1,37 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSort } from '../redux/slices/filterSlice'
 
 export const Sort = () => {
+	const value = useSelector(state => state.filter.sortType)
+	const dispatch = useDispatch()
 	const [open, setOpen] = React.useState(false)
-	const [activeSort, setActiveSort] = React.useState(0)
-	const list = ['популярности', 'цене', 'алфавиту']
+	const sortRef = React.useRef()
 
-	const sortName = i => {
-		setActiveSort(i)
+	const list = [
+		{ name: 'популярности', sort: 'rating' },
+		{ name: 'цене', sort: 'price' },
+		{ name: 'алфавиту', sort: 'title' }
+	]
+
+	const sortName = obj => {
+		dispatch(setSort(obj))
 		setOpen(false)
 	}
+
+	React.useEffect(() => {
+		const click = ev => {
+			if (ev.composedPath().includes(sortRef.current)) return
+			setOpen(false)
+		}
+		document.body.addEventListener('click', click)
+		return () => {
+			document.body.removeEventListener('click', click)
+		}
+	})
+
 	return (
-		<div className='sort'>
+		<div ref={sortRef} className='sort'>
 			<div className='sort__label'>
 				<svg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'>
 					<path
@@ -19,14 +40,14 @@ export const Sort = () => {
 					/>
 				</svg>
 				<b>Сортировка по:</b>
-				<span onClick={() => setOpen(!open)}>{list[activeSort]}</span>
+				<span onClick={() => setOpen(!open)}>{value.name}</span>
 			</div>
 			{open && (
 				<div className='sort__popup'>
 					<ul>
-						{list.map((active, i) => (
-							<li key={i} onClick={() => sortName(i)} className={activeSort === i ? 'active' : ''}>
-								{active}
+						{list.map((obj, i) => (
+							<li key={i} onClick={() => sortName(obj)} className={value.sort === obj.sort ? 'active' : ''}>
+								{obj.name}
 							</li>
 						))}
 					</ul>

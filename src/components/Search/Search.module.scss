@@ -1,0 +1,36 @@
+.root {
+	position: relative;
+	// left: -150px;
+}
+
+.input {
+	padding: 12px 34px;
+	border: 1px solid rgba($color: #000000, $alpha: 0.1);
+	border-radius: 10px;
+	width: 250px;
+	transition: all 0.2s ease;
+	&:focus {
+		border: 1px solid rgba($color: #000000, $alpha: 0.5);
+	}
+}
+.search {
+	width: 22px;
+	position: absolute;
+	top: 10px;
+	left: 8px;
+	height: 22px;
+	opacity: 0.3;
+}
+.cancel {
+	position: absolute;
+	right: 8px;
+	top: 10px;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+	opacity: 0.3;
+	transition: all 0.2s ease;
+	&:hover {
+		opacity: 1;
+	}
+}

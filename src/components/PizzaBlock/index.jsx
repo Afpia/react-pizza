@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItems } from '../../redux/slices/cartSlice'
 
-export const PizzaBlock = ({ title, price, imageUrl, sizes, types }) => {
-	const [pizzaCount, setPizzaCount] = React.useState(0)
+const typesPizza = ['тонкое', 'традиционное']
 
-	function addButton() {
-		setPizzaCount(pizzaCount + 1)
-	}
-
+export const PizzaBlock = ({ id, title, price, imageUrl, sizes, types }) => {
 	const [activeType, setActiveType] = React.useState(0)
 	const [activeSize, setActiveSize] = React.useState(0)
 
-	const typesPizza = ['тонкое', 'традиционное']
+	const [value, setValue] = useState(0)
+	const cartItem = useSelector(state => state.cart.items.find(obj => obj.id === id))
+	const dispatch = useDispatch()
+
+	const addedCount = cartItem ? cartItem.count : 0
+
+	function addButton() {
+		const item = {
+			id,
+			title,
+			price,
+			imageUrl,
+			type: typesPizza[activeType],
+			size: sizes[activeSize]
+		}
+		dispatch(addItems(item))
+		setValue(value + 1)
+	}
 
 	return (
 		<div className='pizza-block'>
@@ -19,7 +34,7 @@ export const PizzaBlock = ({ title, price, imageUrl, sizes, types }) => {
 			<div className='pizza-block__selector'>
 				<ul>
 					{types.map(type => (
-						<li key={type} onClick={() => setActiveType(type)} className={activeType === type ? 'active' : ''}>
+						<li key={type} onClick={() => setActiveType(type)} className={activeType === type || types.length === 1 ? 'active' : ''}>
 							{typesPizza[type]}
 						</li>
 					))}
@@ -42,7 +57,7 @@ export const PizzaBlock = ({ title, price, imageUrl, sizes, types }) => {
 						/>
 					</svg>
 					<span>Добавить</span>
-					<i>{pizzaCount}</i>
+					{cartItem && <i>{addedCount}</i>}
 				</button>
 			</div>
 		</div>

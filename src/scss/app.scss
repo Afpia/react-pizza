@@ -33,10 +33,15 @@ body {
 		font-size: 32px;
 	}
 
+	&__items-cart {
+		display: grid;
+		grid-template-rows: repeat(2, 1fr);
+		justify-items: center;
+	}
 	&__items {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
-		grid-template-rows: repeat(2, 1fr);
+		grid-template-rows: repeat(1, 1fr);
 		row-gap: 60px;
 		column-gap: 20px;
 		justify-items: center;
@@ -335,5 +340,19 @@ body {
 			font-weight: 600;
 			font-size: 18px;
 		}
+	}
+}
+
+.container-error {
+	text-align: center;
+	margin: 0 auto;
+	h2 {
+		margin-bottom: 20px;
+		margin-top: 14px;
+		font-size: 34px;
+	}
+	p {
+		font-size: 24px;
+		color: #7b7b7b;
 	}
 }
