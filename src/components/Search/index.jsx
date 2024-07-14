@@ -1,26 +1,29 @@
 import React, { useState } from 'react'
 import style from './Search.module.scss'
 import debounce from 'lodash.debounce'
+import { useDispatch } from 'react-redux'
 
-import { SearchContext } from '../../App'
+import { setSearchValue } from '../../redux/slices/filterSlice'
 
 export const Search = () => {
-	const { setSearchValue } = React.useContext(SearchContext)
+	const dispatch = useDispatch()
+
 	const searchRef = React.useRef()
 	const [value, setValue] = useState('')
 
 	const clearInput = () => {
 		setValue('')
-		setSearchValue('')
+		dispatch(setSearchValue(''))
 		searchRef.current.focus()
 	}
 	const interData = ev => {
 		setValue(ev.target.value)
 		link(ev.target.value)
 	}
+	
 	const link = React.useCallback(
 		debounce(value => {
-			setSearchValue(value)
+			dispatch(setSearchValue(value))
 		}, 600),
 		[]
 	)

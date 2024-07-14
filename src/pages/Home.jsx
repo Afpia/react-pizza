@@ -5,16 +5,13 @@ import { Categories } from '../components/Categories'
 import { Sort } from '../components/Sort'
 import { PizzaBlock } from '../components/PizzaBlock'
 import { Skeleton } from '../components/PizzaBlock/Skeleton'
-import { SearchContext } from '../App'
 import { fetchPizzas } from '../redux/slices/pizzasSlice'
 
 export const Home = () => {
-	const { categoryId, sortType } = useSelector(state => state.filter)
+	const { categoryId, sortType, searchValue } = useSelector(state => state.filter)
 
 	const dispatch = useDispatch()
 	const { items, loading } = useSelector(state => state.pizzas)
-
-	const { searchValue } = React.useContext(SearchContext)
 
 	const getPizzas = async () => {
 		const category = categoryId > 0 ? `category=${categoryId}` : ''
