@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
 import style from './NotFound.module.scss'
 
-export const NotFoundComponent = () => {
+export const NotFoundComponent: FC = () => {
 	return (
 		<div className={style.notFound}>
 			<div className={style.smile}>😕</div>

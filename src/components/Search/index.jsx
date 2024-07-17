@@ -20,7 +20,7 @@ export const Search = () => {
 		setValue(ev.target.value)
 		link(ev.target.value)
 	}
-	
+
 	const link = React.useCallback(
 		debounce(value => {
 			dispatch(setSearchValue(value))

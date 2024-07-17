@@ -1,9 +1,12 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-export const PizzaItem = () => {
-	const [data, setData] = useState('')
+export const PizzaItem: FC = () => {
+	const [data, setData] = useState<{
+		title: string
+		price: number
+	}>()
 	const { id } = useParams()
 	const navigate = useNavigate()
 
@@ -18,7 +21,11 @@ export const PizzaItem = () => {
 			}
 		}
 		fetch()
-	}, [])
+	}, [id, navigate])
+
+	if (!data) {
+		return 'Загрузка'
+	}
 
 	return (
 		<div>

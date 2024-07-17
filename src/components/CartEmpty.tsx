@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 
 import icon from '../assets/img/empty-cart.png'
 
-export const CartEmpty = () => {
+export const CartEmpty: FC = () => {
 	return (
 		<div className='content'>
 			<div className='container container--cart'>

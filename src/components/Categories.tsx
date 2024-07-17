@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCategoryId } from '../redux/slices/filterSlice'
 
-export const Categories = () => {
-	const value = useSelector(state => state.filter.categoryId)
+export const Categories: FC = () => {
+	const value = useSelector((state: any) => state.filter.categoryId)
 	const dispatch = useDispatch()
 
 	const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
