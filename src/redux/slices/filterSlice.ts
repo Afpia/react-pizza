@@ -1,6 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const initialState = {
+export type sortType = {
+	name: string
+	sort: 'rating' | 'title' | 'price'
+}
+
+interface stateFilter {
+	searchValue: string
+	categoryId: number
+	sortType: sortType
+}
+
+const initialState: stateFilter = {
 	searchValue: '',
 	categoryId: 0,
 	sortType: {
@@ -13,13 +24,13 @@ const filterSlice = createSlice({
 	name: 'filter',
 	initialState,
 	reducers: {
-		setCategoryId(state, action) {
+		setCategoryId(state, action: PayloadAction<number>) {
 			state.categoryId = action.payload
 		},
-		setSort(state, action) {
+		setSort(state, action: PayloadAction<sortType>) {
 			state.sortType = action.payload
 		},
-		setSearchValue(state, action) {
+		setSearchValue(state, action: PayloadAction<string>) {
 			state.searchValue = action.payload
 		}
 	}

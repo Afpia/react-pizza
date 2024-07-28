@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import { NotFoundComponent } from '../components/NotFound'
 
-export const NotFound = () => {
+export const NotFound: FC = () => {
 	return <NotFoundComponent />
 }

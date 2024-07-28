@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -6,7 +6,7 @@ import { clearItems, selectCart } from '../redux/slices/cartSlice'
 import { CartItem } from '../components/CartItem'
 import { CartEmpty } from '../components/CartEmpty'
 
-export const Cart = () => {
+export const Cart: FC = () => {
 	const cartItem = useSelector(selectCart)
 	const dispatch = useDispatch()
 
@@ -76,7 +76,7 @@ export const Cart = () => {
 							Всего пицц:{' '}
 							<b>
 								{cartItem.items.length > 0
-									? cartItem.items.reduce((all, item) => {
+									? cartItem.items.reduce((all: number, item) => {
 											return (all += item.count)
 									  }, 0)
 									: 0}

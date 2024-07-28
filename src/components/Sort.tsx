@@ -1,11 +1,6 @@
 import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSort } from '../redux/slices/filterSlice'
-
-type List = {
-	name: string
-	sort: string
-}
+import { setSort, sortType } from '../redux/slices/filterSlice'
 
 export const Sort: FC = () => {
 	const value = useSelector((state: any) => state.filter.sortType)
@@ -13,20 +8,23 @@ export const Sort: FC = () => {
 	const [open, setOpen] = React.useState(false)
 	const sortRef = React.useRef<HTMLDivElement>(null)
 
-	const list: List[] = [
+	const list: sortType[] = [
 		{ name: 'популярности', sort: 'rating' },
 		{ name: 'цене', sort: 'price' },
 		{ name: 'алфавиту', sort: 'title' }
 	]
 
-	const sortName = (obj: List) => {
+	const sortName = (obj: sortType) => {
 		dispatch(setSort(obj))
 		setOpen(false)
 	}
 
 	React.useEffect(() => {
-		const click = (ev: any) => {
-			if (ev.composedPath().includes(sortRef.current)) return
+		const click = (ev: MouseEventInit) => {
+			const _event = ev as MouseEventInit & {
+				composedPath(): Node[]
+			}
+			if (sortRef.current && _event.composedPath().includes(sortRef.current)) return
 			setOpen(false)
 		}
 		document.body.addEventListener('click', click)

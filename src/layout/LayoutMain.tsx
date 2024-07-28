@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom'
 import { Header } from '../components/Header'
-import React from 'react'
+import React, { FC } from 'react'
 
-export const LayoutMain = () => {
+export const LayoutMain: FC = () => {
 	return (
 		<div className='App'>
 			<div className='wrapper'>
