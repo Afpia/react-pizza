@@ -4,14 +4,14 @@ import { Link, useLocation } from 'react-router-dom'
 import { Search } from './Search'
 
 import { useSelector } from 'react-redux'
-import { selectCart } from '../redux/slices/cartSlice'
+import { item, selectCart } from '../redux/slices/cartSlice'
 
 export const Header: FC = () => {
 	const { totalPrice, items } = useSelector(selectCart)
 
 	const location = useLocation()
 
-	const itemsCount = items.reduce((all: number, item: any) => {
+	const itemsCount = items.reduce((all: number, item: item) => {
 		return (all += item.count)
 	}, 0)
 

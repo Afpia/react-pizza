@@ -1,9 +1,10 @@
 import React, { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSort, sortType } from '../redux/slices/filterSlice'
+import { RootState } from '../redux/store'
 
 export const Sort: FC = () => {
-	const value = useSelector((state: any) => state.filter.sortType)
+	const value = useSelector((state: RootState) => state.filter.sortType)
 	const dispatch = useDispatch()
 	const [open, setOpen] = React.useState(false)
 	const sortRef = React.useRef<HTMLDivElement>(null)

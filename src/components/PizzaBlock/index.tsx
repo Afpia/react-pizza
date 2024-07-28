@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const typesPizza = ['тонкое', 'традиционное']
 
-type PizzaProps = {
+export type PizzaProps = {
 	id: string
 	title: string
 	price: number

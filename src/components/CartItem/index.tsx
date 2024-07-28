@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import { addItems, removeItems, minusItem, item } from '../../redux/slices/cartSlice'
 
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../../redux/store'
 
 export const CartItem: FC<item> = ({ id, title, price, imageUrl, type, size, count }) => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 
 	const removeItem = () => {
 		dispatch(removeItems(id))
@@ -19,7 +19,7 @@ export const CartItem: FC<item> = ({ id, title, price, imageUrl, type, size, cou
 	}
 
 	const addValue = () => {
-		dispatch(addItems({ id }))
+		dispatch(addItems({ id } as item))
 	}
 
 	return (
