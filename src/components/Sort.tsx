@@ -1,11 +1,12 @@
 import React, { FC } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { setSort, sortType } from '../redux/slices/filterSlice'
-import { RootState } from '../redux/store'
+import { RootState, useAppDispatch } from '../redux/store'
 
-export const Sort: FC = () => {
+export const Sort: FC = React.memo(() => {
 	const value = useSelector((state: RootState) => state.filter.sortType)
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
+
 	const [open, setOpen] = React.useState(false)
 	const sortRef = React.useRef<HTMLDivElement>(null)
 
@@ -59,4 +60,4 @@ export const Sort: FC = () => {
 			)}
 		</div>
 	)
-}
+})

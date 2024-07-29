@@ -10,9 +10,9 @@ import { RootState, useAppDispatch } from '../redux/store'
 
 export const Home: FC = () => {
 	const { categoryId, sortType, searchValue } = useSelector((state: RootState) => state.filter)
+	const { items, loading } = useSelector((state: RootState) => state.pizzas)
 
 	const dispatch = useAppDispatch()
-	const { items, loading } = useSelector((state: RootState) => state.pizzas)
 
 	const getPizzas = async () => {
 		const category = categoryId > 0 ? `category=${categoryId}` : ''

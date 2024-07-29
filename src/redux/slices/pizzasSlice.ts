@@ -18,14 +18,19 @@ export interface IFetch {
 	sortType: sortType
 }
 
+enum Status {
+	LOADING = 'loading',
+	SUCCESS = 'success',
+	ERROR = 'error'
+}
 interface pizzasState {
 	items: Pizza[]
-	loading: 'loading' | 'success' | 'error'
+	loading: Status
 }
 
 const initialState: pizzasState = {
 	items: [],
-	loading: 'loading'
+	loading: Status.LOADING
 }
 
 export const fetchPizzas = createAsyncThunk('pizza/fetchPizzas', async ({ category, search, sortType }: IFetch) => {
@@ -44,14 +49,14 @@ const pizzasSlice = createSlice({
 	extraReducers: builder => {
 		builder.addCase(fetchPizzas.fulfilled, (state, action) => {
 			state.items = action.payload
-			state.loading = 'success'
+			state.loading = Status.SUCCESS
 		})
 		builder.addCase(fetchPizzas.pending, state => {
-			state.loading = 'loading'
+			state.loading = Status.LOADING
 		})
 		builder.addCase(fetchPizzas.rejected, state => {
 			state.items = []
-			state.loading = 'error'
+			state.loading = Status.ERROR
 		})
 	}
 })
