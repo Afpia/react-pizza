@@ -1,5 +1,6 @@
-@import 'variables';
-@import 'libs/normalize';
+@import '../assets/styles/variables';
+@import '../assets/styles/mixins';
+@import '../assets/styles/global';
 
 @import 'components/all';
 

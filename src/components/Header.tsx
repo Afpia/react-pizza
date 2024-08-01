@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react'
-import logo from '../assets/img/pizza-logo.svg'
+import logo from '../assets/img/svg/pizza-logo.svg'
 import { Link, useLocation } from 'react-router-dom'
 import { Search } from './Search'
 
