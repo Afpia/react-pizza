@@ -1,18 +1,16 @@
-# 🍕 React Pizza
+# React Pizza 🍕
+This project is educational, it is made entirely from educational video materials.
 
-Интернет магазин, пародия Додо Пиццы 
+# Technologies ⚙️:
 
-
-# ⚙️ Технологии:
-
-- **React 18v**
-- **TypeScript**
-- **Redux Toolkit** 
-- **React Router v6** 
-- **Axios** 
+- React v18
+- TypeScript
+- Redux Toolkit
+- React Router v6
+- Axios 
 - React Hooks
 - Prettier
 - SCSS-Modules 
 - React Content Loader
-- Lodash.Debounce
+- Lodash
 - mockAPI
